@@ -1,79 +1,57 @@
-import React from "react";
+import React, { Component } from "react";
+import { icons } from "./configs/SearchTypesIcons";
 import "../css/search-bar/SearchTypes.css";
 
-const SearchTypes = ({ searchTypes, type, changeType }) => {
-  let icons = [];
-  const searchTypesList = searchTypes.map((type) => {
-    let icon;
+class SearchTypes extends Component {
+  state = {
+    searchTypesVisible: false,
+  };
 
-    switch (type) {
-      case "repo":
-        icon = (
-          <span className="search-icon" type="repo">
-            <i className="fas fa-code"></i>
-          </span>
-        );
-        break;
-      case "user":
-        icon = (
-          <span className="search-icon" type="user">
-            <i className="fas fa-user"></i>
-          </span>
-        );
-        break;
-      case "org":
-        icon = (
-          <span className="search-icon" type="org">
-            <i className="fas fa-building"></i>
-          </span>
-        );
-        break;
-      case "user-repo":
-        icon = (
-          <span className="search-icon" type="user-repo">
-            <i className="fas fa-user"></i>
-            <i className="fas fa-code"></i>
-          </span>
-        );
-        break;
-      case "org-repo":
-        icon = (
-          <span className="search-icon" type="org-repo">
-            <i className="fas fa-building"></i>
-            <i className="fas fa-code"></i>
-          </span>
-        );
-        break;
-      default:
-        icon = "";
-    }
+  handleCaretClick = () => {
+    this.setState({
+      searchTypesVisible: this.state.searchTypesVisible ? false : true,
+    });
+  };
 
-    icons.push(icon);
+  render() {
+    const { searchTypes, type, changeType } = this.props;
+    const searchTypesList = searchTypes.map((type) => {
+      const icon = icons[type];
+      return (
+        <li
+          className="search-type"
+          id={type}
+          key={type}
+          onClick={() => changeType(type)}
+        >
+          {icon}
+        </li>
+      );
+    });
 
+    const currentType = icons[type];
+    const { searchTypesVisible } = this.state;
     return (
-      <li
-        className="search-type"
-        id={type}
-        key={type}
-        onClick={() => changeType(type)}
-      >
-        {icon}
-      </li>
+      <div className="search-types">
+        <div className="current-type">
+          {currentType}
+          <i
+            className={`fas fa-chevron-down search-type-caret ${
+              searchTypesVisible && "active"
+            }`}
+            onClick={this.handleCaretClick}
+          ></i>
+        </div>
+        <div
+          className={`search-types-drop-down ${searchTypesVisible && "active"}`}
+        >
+          <ul className={`search-types-list ${searchTypesVisible && "active"}`}>
+            {searchTypesList}
+          </ul>
+        </div>
+      </div>
     );
-  });
-
-  const currentType = icons.find((icon) => icon.props.type === type);
-
-  return (
-    <div className="search-types">
-      <div className="current-type">
-        {currentType} <i className="fas fa-chevron-down search-type-caret"></i>
-      </div>
-      <div className="search-types-drop-down">
-        <ul>{searchTypesList}</ul>
-      </div>
-    </div>
-  );
-};
+  }
+}
 
 export default SearchTypes;

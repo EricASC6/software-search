@@ -3,44 +3,37 @@ import SearchBar from "./SearchBar";
 import { connect } from "react-redux";
 
 class SearchBarContainer extends Component {
-  constructor() {
-    super();
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.changeType = this.changeType.bind(this);
-    this.toggleSearchTypes = this.toggleSearchTypes.bind(this);
-    this.state = {
-      type: "repo",
-      searchValue: "",
-      searchTypesVisible: false,
-    };
-  }
+  state = {
+    type: this.props.searchTypes[0],
+    searchValue: "",
+  };
 
-  handleChange(e) {
+  handleChange = (e) => {
     this.setState({
       ...this.state,
       searchValue: e.target.value,
     });
-  }
+  };
 
-  handleSubmit(e) {
+  handleSubmit = (e) => {
     e.preventDefault();
+    this.props.history.push("/user/eric");
     console.log(this.state);
-  }
+  };
 
-  changeType(type) {
+  changeType = (type) => {
     this.setState({
       ...this.state,
       type: type,
     });
-  }
+  };
 
-  toggleSearchTypes() {
+  toggleSearchTypes = () => {
     this.setState({
       ...this.state,
       searchTypesVisible: this.state.searchTypesVisible ? false : true,
     });
-  }
+  };
 
   render() {
     const { changeType, handleChange, handleSubmit, toggleSearchTypes } = this;

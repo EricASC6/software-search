@@ -15,18 +15,34 @@
 
 .search-types .current-type .search-type-caret {
   cursor: pointer;
+  transition: transform 250ms ease-out;
+}
+
+.search-types .current-type .search-type-caret.active {
+  transform: rotate(180deg);
 }
 
 .search-types .search-types-drop-down {
-  display: none;
 }
 
-.search-types .search-types-drop-down ul {
+.search-types .search-types-drop-down.active {
+  max-height: 500px;
+}
+
+.search-types .search-types-drop-down .search-types-list {
+  position: relative;
   width: auto;
   list-style: none;
+  max-height: 0;
+  transition: max-height 450ms ease-out;
+  overflow: hidden;
 }
 
-.search-types .search-types-drop-down ul li {
+.search-types .search-types-drop-down .search-types-list.active {
+  max-height: 500px;
+}
+
+.search-types .search-types-drop-down .search-types-list li {
   width: auto;
   padding: 0.75rem;
 }
