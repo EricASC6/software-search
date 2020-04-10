@@ -1,4 +1,5 @@
 import React from "react";
+import "../../css/search-result/profile/profileBio.css";
 
 const ProfileBio = () => {
   return (

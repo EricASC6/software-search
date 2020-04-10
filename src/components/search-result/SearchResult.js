@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ProfileView from "./profileView/ProfileView";
+import ProfileCard from "./profile/ProfileCard";
 import Repos from "./repos/Repos";
 import Charts from "./charts/Charts";
 
@@ -8,7 +8,7 @@ class SearchResult extends Component {
     return (
       <div className="search-result">
         <div className="search-result-container container">
-          <ProfileView />
+          <ProfileCard />
           <Repos />
           <Charts />
         </div>

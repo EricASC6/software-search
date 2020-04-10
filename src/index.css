@@ -4,6 +4,9 @@
   --white: #fff;
   --black: #2d2d2d;
   --light-gray: #f4f4f4;
+  --light-2-gray: #e5e5e5;
+  --sky-blue: #4f91e7;
+  --dark-gray: #646464;
 }
 
 * {
@@ -22,6 +25,7 @@ body {
 
 body {
   font-family: "Montserrat", sans-serif;
+  background: #fefefe;
 }
 
 .app {
