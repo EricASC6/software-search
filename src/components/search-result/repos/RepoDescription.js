@@ -1,4 +1,5 @@
 import React from "react";
+import "../../css/search-result/repos/RepoDescription.css";
 
 const RepoDescription = () => {
   return (

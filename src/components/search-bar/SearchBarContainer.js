@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import SearchBar from "./SearchBar";
 import { connect } from "react-redux";
+import "../css/search-bar/SearchBarContainer.css";
 
 class SearchBarContainer extends Component {
   state = {

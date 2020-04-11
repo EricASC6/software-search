@@ -1,11 +1,10 @@
 import React from "react";
+import "../../css/search-result/repos/RepoLanguages.css";
 
 const RepoLanguages = () => {
   return (
     <div className="repo-languages">
-      <div className="repo-languages-head">
-        <h2>Languages</h2>
-      </div>
+      <h2 className="repo-languages-head">Languages:</h2>
       <div className="languages-section">
         <div className="language">Javascript</div>
         <div className="language">Python</div>

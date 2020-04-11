@@ -1,5 +1,6 @@
 import React from "react";
 import ReposSlider from "./ReposSlider";
+import "../../css/search-result/repos/Repos.css";
 
 const Repos = () => {
   return (
