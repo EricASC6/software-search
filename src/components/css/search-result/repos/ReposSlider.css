@@ -1,0 +1,9 @@
+.repos-slider {
+  padding: 1.25rem;
+}
+
+@media screen and (min-width: 768px) {
+  .repos-slider {
+    box-shadow: 0 10px 10px 0 rgba(206, 206, 206, 0.25);
+  }
+}

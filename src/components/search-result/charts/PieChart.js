@@ -26,8 +26,8 @@ class PieChart extends Component {
       <div className="pie-chart">
         <canvas
           id="myChart"
-          width="400"
-          height="400"
+          width="350"
+          height="350"
           ref={this.chartRef}
         ></canvas>
       </div>

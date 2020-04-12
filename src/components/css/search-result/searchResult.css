@@ -1,0 +1,20 @@
+.search-result-container {
+  padding: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .search-result-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1rem 0;
+    padding: 0 1rem;
+    max-width: 1200px;
+    margin: auto;
+  }
+
+  .search-top {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+}

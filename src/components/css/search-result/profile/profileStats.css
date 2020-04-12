@@ -1,21 +1,8 @@
 .profile-stats {
-  position: relative;
-  padding: 0 0.75rem;
   color: var(--black);
   display: flex;
   justify-content: flex-start;
   align-items: center;
-}
-
-.profile-stats::before {
-  position: absolute;
-  content: "";
-  top: 0;
-  left: 0;
-  width: 5px;
-  height: 100%;
-  border-radius: 3px;
-  background-color: var(--light-2-gray);
 }
 
 .profile-stats .stats-col {
@@ -24,6 +11,7 @@
 
 .profile-stats .data-field {
   display: flex;
+  font-size: 0.9rem;
   padding: 0.33rem 0;
 }
 

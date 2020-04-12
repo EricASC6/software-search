@@ -30,8 +30,8 @@ class LineGraph extends Component {
         <canvas
           ref={this.chartRef}
           id="myChart"
-          width="400"
-          height="400"
+          width="350"
+          height="350"
         ></canvas>
       </div>
     );

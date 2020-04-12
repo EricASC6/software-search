@@ -1,10 +1,12 @@
-.repos-card {
-  /* padding: 0.75rem; */
-}
-
 .repo-stats-cards {
   display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-end;
   padding: 0.75rem 0;
+}
+
+@media screen and (min-width: 768px) {
+  /* .repo-stats-cards {
+    justify-content: space-around;
+  } */
 }
