@@ -1,4 +1,17 @@
+.repos-card {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.25rem;
+  opacity: 0;
+}
+
+.repos-card.active {
+  position: static;
+  opacity: 1;
+}
+
 .repo-stats-cards {
+  position: relative;
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
@@ -6,7 +19,7 @@
 }
 
 @media screen and (min-width: 768px) {
-  /* .repo-stats-cards {
+  .repo-stats-cards {
     justify-content: space-around;
-  } */
+  }
 }

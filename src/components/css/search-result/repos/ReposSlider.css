@@ -1,5 +1,53 @@
 .repos-slider {
+  position: relative;
   padding: 1.25rem;
+}
+
+.repos-slider .arrows {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.arrows .arrow {
+  font-size: 1.25rem;
+  height: 25px;
+  width: 25px;
+  color: var(--black);
+  cursor: pointer;
+}
+
+.arrows .arrow i {
+  transition: 250ms ease-out all;
+}
+
+.arrows .arrow:hover i {
+  font-size: 1.75rem;
+}
+
+.arrows .right {
+  text-align: right;
+  position: absolute;
+  right: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.arrows .right:hover i {
+  transform: translateX(10px);
+}
+
+.arrows .left {
+  position: absolute;
+  left: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.arrows .left:hover i {
+  transform: translateX(-10px);
 }
 
 @media screen and (min-width: 768px) {
