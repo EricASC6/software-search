@@ -2,21 +2,25 @@ import React from "react";
 import RepoCard from "./RepoCard";
 import "../../css/search-result/repos/ReposSlider.css";
 
-const ReposSlider = () => {
+const ReposSlider = ({
+  currentRepo,
+  repos,
+  moveToNextRepo,
+  moveToPrevRepo,
+}) => {
   return (
     <div className="repos-slider">
-      <RepoCard active={true} />
-      <RepoCard />
-      <RepoCard />
-      <RepoCard />
-      <RepoCard />
-      <RepoCard />
+      <div className="slider-wrapper">
+        {repos.map((repo, i) => {
+          return <RepoCard active={i === currentRepo} key={i} indx={i} />;
+        })}
+      </div>
 
       <div className="arrows">
-        <div className="left arrow">
+        <div className="left arrow" onClick={moveToPrevRepo}>
           <i className="fas fa-chevron-left"></i>
         </div>
-        <div className="right arrow">
+        <div className="right arrow" onClick={moveToNextRepo}>
           <i className="fas fa-chevron-right"></i>
         </div>
       </div>

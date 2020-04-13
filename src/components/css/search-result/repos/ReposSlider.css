@@ -3,6 +3,13 @@
   padding: 1.25rem;
 }
 
+.repos-slider .slider-wrapper {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
 .repos-slider .arrows {
   position: absolute;
   top: 0;

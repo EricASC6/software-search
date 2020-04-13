@@ -1,13 +1,15 @@
 .repos-card {
   position: absolute;
-  top: 1.25rem;
-  left: 1.25rem;
-  opacity: 0;
+  top: 0;
+  left: 0;
+  transform: translateX(-100%);
+  transition: 250ms ease-in-out all;
 }
 
 .repos-card.active {
   position: static;
-  opacity: 1;
+  transform: translateX(0%);
+  transition: 250ms ease-in-out all 250ms;
 }
 
 .repo-stats-cards {

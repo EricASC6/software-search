@@ -4,9 +4,10 @@ import RepoStatsCard from "./RepoStatsCard";
 import RepoLanguages from "./RepoLanguages";
 import "../../css/search-result/repos/RepoCard.css";
 
-const RepoCard = ({ active }) => {
+const RepoCard = ({ active, indx }) => {
   return (
     <div className={`repos-card ${active ? "active" : ""}`}>
+      <h2>{indx}</h2>
       <RepoDescription />
       <div className="repo-stats-cards">
         <RepoStatsCard type="watches" />
