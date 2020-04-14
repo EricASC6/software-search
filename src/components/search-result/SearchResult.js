@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import ProfileCard from "./profile/ProfileCard";
 import Repos from "./repos/Repos";
 import Charts from "./charts/Charts";
+import { searchUser } from "./../../actions/githubActions";
 import "../css/search-result/searchResult.css";
 
 class SearchResult extends Component {
@@ -34,18 +36,35 @@ class SearchResult extends Component {
     );
   };
 
+  componentDidMount() {
+    const url = this.props.match.url;
+    const [, type, value] = url.split("/");
+
+    switch (type) {
+      case "user":
+        this.props.searchUser(value);
+        break;
+      default:
+        return;
+    }
+  }
+
   render() {
+    const { moveToNextRepo, moveToPrevRepo } = this;
+    const { profile } = this.props;
+    const { repos, numRepos, currentRepo } = this.state;
+
     return (
       <div className="search-result">
         <div className="search-result-container container">
           <div className="search-top">
-            <ProfileCard />
+            <ProfileCard profile={profile} />
             <Repos
-              repos={this.state.repos}
-              numRepos={this.state.numRepos}
-              currentRepo={this.state.currentRepo}
-              moveToNextRepo={this.moveToNextRepo}
-              moveToPrevRepo={this.moveToPrevRepo}
+              repos={repos}
+              numRepos={numRepos}
+              currentRepo={currentRepo}
+              moveToNextRepo={moveToNextRepo}
+              moveToPrevRepo={moveToPrevRepo}
             />
           </div>
           <Charts />
@@ -55,4 +74,16 @@ class SearchResult extends Component {
   }
 }
 
-export default SearchResult;
+const mapStateToProps = (state) => {
+  return {
+    profile: state.github.profile,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    searchUser: (username) => dispatch(searchUser(username)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchResult);

@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import SearchBar from "./SearchBar";
-import { connect } from "react-redux";
 import "../css/search-bar/SearchBarContainer.css";
 
 class SearchBarContainer extends Component {
   state = {
-    type: this.props.searchTypes[0],
+    searchTypes: ["repo", "user", "org", "user-repo", "org-repo"],
+    type: "repo",
     searchValue: "",
   };
 
@@ -18,8 +18,14 @@ class SearchBarContainer extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.history.push("/user/eric");
-    console.log(this.state);
+    const { type, searchValue } = this.state;
+    switch (type) {
+      case "user":
+        this.props.history.push(`/user/${searchValue}`);
+        break;
+      default:
+        return;
+    }
   };
 
   changeType = (type) => {
@@ -38,8 +44,7 @@ class SearchBarContainer extends Component {
 
   render() {
     const { changeType, handleChange, handleSubmit, toggleSearchTypes } = this;
-    const { type } = this.state;
-    const { searchTypes } = this.props;
+    const { type, searchTypes } = this.state;
 
     return (
       <div className="search">
@@ -61,10 +66,4 @@ class SearchBarContainer extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    searchTypes: state.searchTypes,
-  };
-};
-
-export default connect(mapStateToProps)(SearchBarContainer);
+export default SearchBarContainer;

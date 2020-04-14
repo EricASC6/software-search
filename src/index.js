@@ -4,11 +4,17 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import rootReducer from "./reducers/rootReducer";
+import thunk from "redux-thunk";
+import GithubAPI from "./githubAPI/githubAPI";
 
-const store = createStore(rootReducer);
+const githubAPI = new GithubAPI();
+const store = createStore(
+  rootReducer,
+  applyMiddleware(thunk.withExtraArgument(githubAPI))
+);
 
 ReactDOM.render(
   <Provider store={store}>

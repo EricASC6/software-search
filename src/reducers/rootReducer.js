@@ -1,9 +1,6 @@
-let initState = {
-  searchTypes: ["repo", "user", "org", "user-repo", "org-repo"],
-};
+import { combineReducers } from "redux";
+import githubReducer from "./githubReducer";
 
-const rootReducer = (state = initState, action) => {
-  return state;
-};
+const rootReducer = combineReducers({ github: githubReducer });
 
 export default rootReducer;
