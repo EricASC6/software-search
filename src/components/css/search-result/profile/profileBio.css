@@ -1,0 +1,15 @@
+.profile-bio {
+  padding: 0.5rem 0;
+  max-width: 375px;
+}
+
+.profile-bio .bio-header h2 {
+  color: var(--black);
+  font-size: 1.33rem;
+  padding: 0.33rem 0;
+}
+
+.profile-bio .bio-body {
+  font-size: 0.9rem;
+  color: var(--dark-gray);
+}

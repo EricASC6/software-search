@@ -1,0 +1,19 @@
+.navbar {
+  width: 100%;
+  background-color: var(--black);
+  padding: 1rem 0;
+}
+
+.navbar .navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-container .navbar-head .navbar-head-logo {
+  font-size: 1.1rem;
+  letter-spacing: 0.75px;
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 500;
+}

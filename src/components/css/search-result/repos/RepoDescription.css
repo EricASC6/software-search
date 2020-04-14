@@ -1,0 +1,14 @@
+.repo-meta {
+  margin-top: 0.75rem;
+}
+
+.repo-name {
+  color: var(--black);
+  font-size: 1.25rem;
+}
+
+.repo-description {
+  color: var(--dark-gray);
+  font-size: 1rem;
+  padding: 0.5rem 0;
+}
