@@ -1,30 +1,25 @@
 export const searchUser = (username) => {
-  return async (dispatch, getState, githubAPI) => {
+  return async (dispatch, getState, { githubAPI, GithubDataFilter }) => {
+    const cached = JSON.parse(localStorage.getItem(`/users/{username}`));
+
+    if (cached) {
+      const { profile: _profile, _repos } = cached;
+      return dispatch({ type: "USER_SEARCH", profile: _profile, _repos });
+    }
+
     const userData = await githubAPI.getUserData(username);
-    const {
-      login,
-      avatar_url,
-      html_url,
-      name,
-      location,
-      email,
-      bio,
-      public_repos,
-      followers,
-    } = userData;
+    const repos = await githubAPI.getRepos(username);
+    const sortedRepos = githubAPI.sortReposByStars(repos, 6);
+    const profileData = GithubDataFilter.filterUserData(userData);
+    const reposData = await GithubDataFilter.filterReposData(sortedRepos);
+    localStorage.setItem(
+      `/users/${username}`,
+      JSON.stringify({
+        profile: profileData,
+        repos: reposData,
+      })
+    );
 
-    const profileData = {
-      username: login,
-      profileLink: html_url,
-      profileImgSrc: avatar_url,
-      name,
-      location,
-      email,
-      bio,
-      publicRepos: public_repos,
-      followers,
-    };
-
-    dispatch({ type: "USER_SEARCH", profile: profileData });
+    dispatch({ type: "USER_SEARCH", profile: profileData, repos: reposData });
   };
 };

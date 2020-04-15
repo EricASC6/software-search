@@ -1,11 +1,11 @@
 import React from "react";
 import "../../css/search-result/repos/RepoDescription.css";
 
-const RepoDescription = () => {
+const RepoDescription = ({ name, description }) => {
   return (
     <div className="repo-meta">
-      <h2 className="repo-name">repo-name</h2>
-      <p className="repo-description">This is the repo description</p>
+      <h2 className="repo-name">{name}</h2>
+      <p className="repo-description">{description}</p>
     </div>
   );
 };

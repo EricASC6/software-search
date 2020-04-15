@@ -9,11 +9,12 @@ import { Provider } from "react-redux";
 import rootReducer from "./reducers/rootReducer";
 import thunk from "redux-thunk";
 import GithubAPI from "./githubAPI/githubAPI";
+import GithubDataFilter from "./githubAPI/githubDataFilter";
 
 const githubAPI = new GithubAPI();
 const store = createStore(
   rootReducer,
-  applyMiddleware(thunk.withExtraArgument(githubAPI))
+  applyMiddleware(thunk.withExtraArgument({ githubAPI, GithubDataFilter }))
 );
 
 ReactDOM.render(

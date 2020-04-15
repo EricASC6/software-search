@@ -11,9 +11,17 @@ const ReposSlider = ({
   return (
     <div className="repos-slider">
       <div className="slider-wrapper">
-        {repos.map((repo, i) => {
-          return <RepoCard active={i === currentRepo} key={i} indx={i} />;
-        })}
+        {repos &&
+          repos.map((repo, i) => {
+            return (
+              <RepoCard
+                active={i === currentRepo}
+                repo={repo}
+                key={repo.id}
+                indx={i}
+              />
+            );
+          })}
       </div>
 
       <div className="arrows">

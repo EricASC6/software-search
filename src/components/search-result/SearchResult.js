@@ -51,8 +51,8 @@ class SearchResult extends Component {
 
   render() {
     const { moveToNextRepo, moveToPrevRepo } = this;
-    const { profile } = this.props;
-    const { repos, numRepos, currentRepo } = this.state;
+    const { profile, repos } = this.props;
+    const { numRepos, currentRepo } = this.state;
 
     return (
       <div className="search-result">
@@ -77,6 +77,7 @@ class SearchResult extends Component {
 const mapStateToProps = (state) => {
   return {
     profile: state.github.profile,
+    repos: state.github.repos,
   };
 };
 
