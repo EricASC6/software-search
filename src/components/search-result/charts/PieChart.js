@@ -5,25 +5,42 @@ class PieChart extends Component {
   chartRef = React.createRef();
 
   componentDidMount() {
-    const chartCanvas = this.chartRef.current.getContext("2d");
-    const data = {
+    this.buildChart();
+  }
+
+  componentDidUpdate() {
+    this.buildChart();
+  }
+
+  buildChart = () => {
+    const { labels, data } = this.props;
+    const dataset = {
       datasets: [
         {
-          data: [10, 20, 30],
+          data: data,
+          backgroundColor: [
+            "#36A2EB",
+            "#FF6384",
+            "#FF9F40",
+            "#FFCD56",
+            "#4BC0C0",
+            "#A258FD",
+          ],
         },
       ],
-
-      labels: ["Red", "Yellow", "Blue"],
+      labels: labels,
     };
+    const chartCanvas = this.chartRef.current.getContext("2d");
     new Chart(chartCanvas, {
       type: "pie",
-      data: data,
+      data: dataset,
     });
-  }
+  };
 
   render() {
     return (
       <div className="pie-chart">
+        <h2>Languages</h2>
         <canvas
           id="myChart"
           width="350"

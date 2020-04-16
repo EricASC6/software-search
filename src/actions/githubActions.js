@@ -1,10 +1,14 @@
 export const searchUser = (username) => {
   return async (dispatch, getState, { githubAPI, GithubDataFilter }) => {
-    const cached = JSON.parse(localStorage.getItem(`/users/{username}`));
+    const cached = JSON.parse(localStorage.getItem(`/users/${username}`));
 
     if (cached) {
-      const { profile: _profile, _repos } = cached;
-      return dispatch({ type: "USER_SEARCH", profile: _profile, _repos });
+      const { profile: _profile, repos: _repos } = cached;
+      return dispatch({
+        type: "USER_SEARCH",
+        profile: _profile,
+        repos: _repos,
+      });
     }
 
     const userData = await githubAPI.getUserData(username);
