@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Chart from "chart.js";
 
+let chart;
+
 class PieChart extends Component {
   chartRef = React.createRef();
 
@@ -30,8 +32,10 @@ class PieChart extends Component {
       ],
       labels: labels,
     };
+
     const chartCanvas = this.chartRef.current.getContext("2d");
-    new Chart(chartCanvas, {
+    if (chart) chart.destroy();
+    chart = new Chart(chartCanvas, {
       type: "pie",
       data: dataset,
     });
