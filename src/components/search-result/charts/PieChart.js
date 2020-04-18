@@ -38,13 +38,20 @@ class PieChart extends Component {
     chart = new Chart(chartCanvas, {
       type: "pie",
       data: dataset,
+      options: {
+        title: {
+          display: true,
+          fontSize: "18",
+          fontColor: "#2d2d2d",
+          text: "Languages",
+        },
+      },
     });
   };
 
   render() {
     return (
       <div className="pie-chart">
-        <h2>Languages</h2>
         <canvas
           id="myChart"
           width="350"

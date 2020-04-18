@@ -24,7 +24,7 @@ const ProfileCard = ({ profile }) => {
           <div className="profile-info">
             <div className="profile-header">
               <h2 className="user">{username}</h2>
-              <a href={profileLink} className="profile-link">
+              <a href={profileLink} className="profile-link" target="__blank">
                 <i className="fas fa-external-link-alt"></i>
               </a>
             </div>

@@ -13,9 +13,20 @@ export const searchUser = (username) => {
 
     const userData = await githubAPI.getUserData(username);
     const repos = await githubAPI.getRepos(username);
-    const sortedRepos = githubAPI.sortReposByStars(repos, 6);
+    const sortedRepos = githubAPI.sortReposByStars(repos, 3);
     const profileData = GithubDataFilter.filterUserData(userData);
-    const reposData = await GithubDataFilter.filterReposData(sortedRepos);
+    let reposData = await GithubDataFilter.filterReposData(sortedRepos);
+    reposData = await Promise.all(
+      reposData.map(async (repo) => {
+        const commitActivity = await githubAPI.getCommitActivity(
+          username,
+          repo.name
+        );
+        return { ...repo, commitActivity: commitActivity.all };
+      })
+    );
+
+    // Caching result
     localStorage.setItem(
       `/users/${username}`,
       JSON.stringify({

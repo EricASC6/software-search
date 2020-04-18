@@ -3,7 +3,7 @@ import Chart from "chart.js";
 
 let chart;
 
-class LineGraph extends Component {
+class BarGraph extends Component {
   chartRef = React.createRef();
 
   componentDidMount() {
@@ -15,33 +15,36 @@ class LineGraph extends Component {
   }
 
   buildChart = () => {
-    const ctx = this.chartRef.current.getContext("2d");
-
     const { labels, data } = this.props;
     const dataset = {
       labels: labels,
       datasets: [
         {
-          label: "Commit Activity Every Week",
-          data: data,
-          borderColor: "#4BC0C0",
-          pointBorderColor: "#40a3a3",
-          pointBackgroundColor: "#4BC0C0",
-          fill: false,
+          label: "Repos vs. Stars",
+          data: data && [...data, 0],
+          backgroundColor: [
+            "#36A2EB",
+            "#FF6384",
+            "#FF9F40",
+            "#FFCD56",
+            "#4BC0C0",
+            "#A258FD",
+          ],
         },
       ],
     };
 
+    const chartCanvas = this.chartRef.current.getContext("2d");
     if (chart) chart.destroy();
-    chart = new Chart(ctx, {
-      type: "line",
+    chart = new Chart(chartCanvas, {
+      type: "bar",
       data: dataset,
       options: {
         title: {
           display: true,
           fontSize: "18",
           fontColor: "#2d2d2d",
-          text: "Commit Activity in a Year",
+          text: "Most Popular Repos",
         },
       },
     });
@@ -49,16 +52,16 @@ class LineGraph extends Component {
 
   render() {
     return (
-      <div className="line-graph">
+      <div className="bar-graph">
         <canvas
-          ref={this.chartRef}
           id="myChart"
           width="350"
           height="350"
+          ref={this.chartRef}
         ></canvas>
       </div>
     );
   }
 }
 
-export default LineGraph;
+export default BarGraph;

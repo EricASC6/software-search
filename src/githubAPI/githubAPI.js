@@ -5,6 +5,13 @@ class GithubAPI {
     this.userAPI = this.rootAPI + "/users/";
     this.reposAPI = (username) =>
       this.rootAPI + "/users/" + username + "/repos";
+    this.commitActivityAPI = (username, reponame) =>
+      this.rootAPI +
+      "/repos/" +
+      username +
+      "/" +
+      reponame +
+      "/stats/participation";
   }
 
   async getUserData(username) {
@@ -34,6 +41,16 @@ class GithubAPI {
     );
 
     return length >= count ? sortedRepos.slice(0, count) : sortedRepos;
+  }
+
+  async getCommitActivity(username, reponame) {
+    const query = this.commitActivityAPI(username, reponame);
+    const response = await fetch(query, {
+      headers: this.header,
+    });
+
+    const commitData = await response.json();
+    return commitData;
   }
 }
 
