@@ -4,7 +4,7 @@ class GithubAPI {
     this.header = { Accept: "application/vnd.github.v3+json" };
     this.userAPI = this.rootAPI + "/users/";
     this.reposAPI = (username) =>
-      this.rootAPI + "/users/" + username + "/repos";
+      this.rootAPI + "/users/" + username + "/repos?per_page=100";
     this.commitActivityAPI = (username, reponame) =>
       this.rootAPI +
       "/repos/" +
@@ -31,6 +31,9 @@ class GithubAPI {
     });
 
     const repos = await response.json();
+    const headers = response.headers;
+    console.log(headers);
+    console.log(repos);
     return repos;
   }
 

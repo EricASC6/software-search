@@ -33,25 +33,30 @@ const ProfileCard = ({ profile }) => {
               <div className="stats-col-1 stats-col">
                 <div className="data-field" id="name">
                   <i className="fas fa-user"></i>
-                  <p>{name}</p>
+                  <p>{name ? name : "N/A"}</p>
                 </div>
                 <div className="data-field" id="location">
                   <i className="fas fa-location-arrow"></i>
-                  <p>{location}</p>
+                  <p>{location ? location : "N/A"}</p>
                 </div>
                 <div className="data-field" id="email">
                   <i className="fas fa-envelope"></i>
-                  <p>{email}</p>
+                  <p>{email ? email : "N/A"}</p>
                 </div>
               </div>
               <div className="stats-col-2 stats-col">
                 <div className="data-field" id="followers">
                   <i className="fas fa-users"></i>
-                  <p>{followers}</p>
+                  <p>{followers ? followers : "N/A"}</p>
                 </div>
                 <div className="data-field" id="repos">
-                  <i className="fas fa-user"></i>
-                  <p>{publicRepos}</p>
+                  {/* <i className="fas fa-user"></i> */}
+                  <img
+                    src="https://cdn0.iconfinder.com/data/icons/octicons/1024/repo-512.png"
+                    alt="repo"
+                    id="repo-icon"
+                  />
+                  <p> {publicRepos ? publicRepos : "N/A"}</p>
                 </div>
               </div>
             </div>
@@ -61,7 +66,7 @@ const ProfileCard = ({ profile }) => {
                 <h2>Bio</h2>
               </div>
               <div className="bio-body">
-                <p>{bio}</p>
+                <p>{bio ? bio : "N/A"}</p>
               </div>
             </div>
           </div>
