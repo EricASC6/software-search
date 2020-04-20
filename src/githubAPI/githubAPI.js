@@ -31,8 +31,7 @@ class GithubAPI {
     });
 
     const repos = await response.json();
-    const headers = response.headers;
-    console.log(headers);
+
     console.log(repos);
     return repos;
   }
