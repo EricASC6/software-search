@@ -13,6 +13,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={SearchBarContainer} />
             <Route exact path="/user/:user" component={SearchResult} />
+            <Route exact path="/org/:org" component={SearchResult} />
           </Switch>
         </BrowserRouter>
       </div>

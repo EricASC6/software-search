@@ -49,7 +49,7 @@ class LineGraph extends Component {
 
   render() {
     return (
-      <div className="line-graph">
+      <div className="line-graph chart">
         <canvas
           ref={this.chartRef}
           id="myChart"

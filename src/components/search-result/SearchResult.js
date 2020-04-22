@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import ProfileCard from "./profile/ProfileCard";
 import Repos from "./repos/Repos";
 import Charts from "./charts/Charts";
-import { searchUser } from "./../../actions/githubActions";
+import { searchUser, searchOrg } from "./../../actions/githubActions";
 import "../css/search-result/SearchResult.css";
 
 class SearchResult extends Component {
@@ -40,6 +40,10 @@ class SearchResult extends Component {
       case "user":
         this.props.searchUser(value);
         break;
+      case "org":
+        console.log("searching for an org");
+        this.props.searchOrg(value);
+        break;
       default:
         return;
     }
@@ -49,7 +53,7 @@ class SearchResult extends Component {
     if (!prevProps.github.profile) {
       this.setState({
         github: this.props.github,
-        numRepos: this.props.github.repos.length,
+        numRepos: this.props.github.numRepos,
       });
     }
   }
@@ -80,11 +84,12 @@ class SearchResult extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { profile, repos } = state.github;
+  const { profile, repos, numRepos } = state.github;
   return {
     github: {
       profile,
       repos,
+      numRepos,
     },
   };
 };
@@ -92,6 +97,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     searchUser: (username) => dispatch(searchUser(username)),
+    searchOrg: (orgname) => dispatch(searchOrg(orgname)),
   };
 };
 

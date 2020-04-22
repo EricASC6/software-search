@@ -3,8 +3,11 @@ class GithubAPI {
     this.rootAPI = "https://api.github.com";
     this.header = { Accept: "application/vnd.github.v3+json" };
     this.userAPI = this.rootAPI + "/users/";
+    this.orgAPI = this.rootAPI + "/orgs/";
     this.reposAPI = (username) =>
       this.rootAPI + "/users/" + username + "/repos?per_page=100";
+    this.orgReposAPI = (orgname) =>
+      this.rootAPI + "/orgs/" + orgname + "/repos?per_page=100";
     this.commitActivityAPI = (username, reponame) =>
       this.rootAPI +
       "/repos/" +
@@ -31,8 +34,6 @@ class GithubAPI {
     });
 
     const repos = await response.json();
-
-    console.log(repos);
     return repos;
   }
 
@@ -53,6 +54,28 @@ class GithubAPI {
 
     const commitData = await response.json();
     return commitData;
+  }
+
+  async getOrg(orgname) {
+    const query = this.orgAPI + orgname;
+
+    const response = await fetch(query, {
+      headers: this.header,
+    });
+
+    const orgData = await response.json();
+    return orgData;
+  }
+
+  async getOrgRepos(orgname) {
+    const query = this.orgReposAPI(orgname);
+
+    const response = await fetch(query, {
+      headers: this.header,
+    });
+
+    const orgRepos = await response.json();
+    return orgRepos;
   }
 }
 

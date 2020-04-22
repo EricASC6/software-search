@@ -52,7 +52,7 @@ class BarGraph extends Component {
 
   render() {
     return (
-      <div className="bar-graph">
+      <div className="bar-graph chart">
         <canvas
           id="myChart"
           width="350"

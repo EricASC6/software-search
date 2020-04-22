@@ -4,8 +4,8 @@ import "../css/search-bar/SearchBarContainer.css";
 
 class SearchBarContainer extends Component {
   state = {
-    searchTypes: ["repo", "user", "org", "user-repo", "org-repo"],
-    type: "repo",
+    searchTypes: ["user", "org"],
+    type: "user",
     searchValue: "",
   };
 
@@ -18,10 +18,14 @@ class SearchBarContainer extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    console.log(this.state);
     const { type, searchValue } = this.state;
     switch (type) {
       case "user":
         this.props.history.push(`/user/${searchValue}`);
+        break;
+      case "org":
+        this.props.history.push(`/org/${searchValue}`);
         break;
       default:
         return;

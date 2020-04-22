@@ -55,6 +55,34 @@ class GithubDataFilter {
       })
     );
   }
+
+  static filterOrgData(orgData) {
+    const {
+      login,
+      avatar_url,
+      html_url,
+      name,
+      location,
+      email,
+      description,
+      public_repos,
+      followers,
+    } = orgData;
+
+    const data = {
+      username: login,
+      profileLink: html_url,
+      profileImgSrc: avatar_url,
+      name,
+      location,
+      email,
+      bio: description,
+      publicRepos: public_repos,
+      followers,
+    };
+
+    return data;
+  }
 }
 
 export default GithubDataFilter;

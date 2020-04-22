@@ -15,8 +15,20 @@ const githubReducer = (state = initState, action) => {
         type: "user",
         profile: action.profile,
         repos: action.repos,
+        numRepos: action.repos.length,
       };
 
+    case "ORG_SEARCH":
+      console.log("ORG_sEARCH");
+      console.log(action.repos);
+      console.log(action.profile);
+      return {
+        ...state,
+        type: "org",
+        profile: action.profile,
+        repos: action.repos,
+        numRepos: action.repos.length,
+      };
     default:
       return state;
   }

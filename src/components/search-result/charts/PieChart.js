@@ -50,14 +50,20 @@ class PieChart extends Component {
   };
 
   render() {
+    const data = this.props.data;
+    console.log(data);
+
     return (
-      <div className="pie-chart">
+      <div className="pie-chart chart">
         <canvas
           id="myChart"
           width="350"
           height="350"
           ref={this.chartRef}
         ></canvas>
+        {!data || data.length === 0 ? (
+          <div className="no-chart">No Data To Display</div>
+        ) : null}
       </div>
     );
   }
