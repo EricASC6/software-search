@@ -2,6 +2,7 @@ let initState = {
   type: null,
   profile: null,
   repos: null,
+  err: null,
 };
 
 const githubReducer = (state = initState, action) => {
@@ -28,6 +29,11 @@ const githubReducer = (state = initState, action) => {
         profile: action.profile,
         repos: action.repos,
         numRepos: action.repos.length,
+      };
+    case "SEARCH_ERROR":
+      return {
+        ...state,
+        err: action.err,
       };
     default:
       return state;

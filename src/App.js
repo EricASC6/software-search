@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import SearchBarContainer from "./components/search-bar/SearchBarContainer";
 import SearchResult from "./components/search-result/SearchResult";
+import NotFound from "./components/search-result/NotFound";
 
 class App extends Component {
   render() {
@@ -12,8 +13,9 @@ class App extends Component {
           <Navbar />
           <Switch>
             <Route exact path="/" component={SearchBarContainer} />
-            <Route exact path="/user/:user" component={SearchResult} />
-            <Route exact path="/org/:org" component={SearchResult} />
+            <Route path="/user/:user" component={SearchResult} />
+            <Route path="/org/:org" component={SearchResult} />
+            <Route path="/error" component={NotFound} />
           </Switch>
         </BrowserRouter>
       </div>

@@ -28,13 +28,40 @@ class GithubAPI {
   }
 
   async getRepos(username) {
-    const query = this.reposAPI(username);
-    const response = await fetch(query, {
-      headers: this.header,
-    });
+    try {
+      const query = this.reposAPI(username);
+      const response = await fetch(query, {
+        headers: this.header,
+      });
 
-    const repos = await response.json();
-    return repos;
+      let totalRepos = [];
+
+      const repos = await response.json();
+      totalRepos.push(...repos);
+
+      const headers = response.headers;
+      let link = headers.get("link").split(",");
+      console.log(link);
+      const pages = parseInt(link[1].match(/&page=(\d+).*$/)[1]);
+      console.log(pages);
+
+      for (let i = 0; i < pages - 1; i++) {
+        let next = link.find((l) => l.match(/rel="next"/));
+
+        let pagQuery = next.match(/<.+>/)[0];
+        pagQuery = pagQuery.slice(1, pagQuery.length - 1);
+
+        const pagResponse = await fetch(pagQuery);
+        const data = await pagResponse.json();
+        totalRepos.push(...data);
+
+        link = pagResponse.headers.get("link").split(",");
+      }
+
+      return totalRepos;
+    } catch (err) {
+      return err;
+    }
   }
 
   sortReposByStars(repos, count) {

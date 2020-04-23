@@ -51,6 +51,8 @@ class SearchResult extends Component {
 
   componentDidUpdate(prevProps) {
     if (!prevProps.github.profile) {
+      if (this.props.github.err) return this.props.history.push("/error");
+
       this.setState({
         github: this.props.github,
         numRepos: this.props.github.numRepos,
@@ -84,12 +86,13 @@ class SearchResult extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { profile, repos, numRepos } = state.github;
+  const { profile, repos, numRepos, err } = state.github;
   return {
     github: {
       profile,
       repos,
       numRepos,
+      err,
     },
   };
 };
