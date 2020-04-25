@@ -13,12 +13,63 @@
   transition: 250ms ease-in-out all 250ms;
 }
 
+.repo-meta {
+  margin-top: 0.75rem;
+}
+
+.repo-name {
+  color: var(--black);
+  font-size: 1.25rem;
+}
+
+.repo-description {
+  color: var(--dark-gray);
+  font-size: 0.9rem;
+  padding: 0.5rem 0;
+}
+
 .repo-stats-cards {
   position: relative;
   display: flex;
   justify-content: space-around;
   align-items: flex-end;
   padding: 0.75rem 0;
+}
+
+.repo-stat-card {
+  padding: 0.5rem;
+  text-align: center;
+  border-radius: 5px;
+  margin: 0 0.25rem;
+  flex: 1;
+}
+
+.repo-stat-card#watches {
+  background-color: var(--sky-blue);
+}
+
+.repo-stat-card#watches .repo-stat-head {
+  color: var(--light-blue);
+}
+
+.repo-stat-card#forks {
+  background-color: var(--green);
+}
+
+.repo-stat-card#forks .repo-stat-head {
+  color: var(--light-green);
+}
+
+.repo-stat-card#stars {
+  background-color: var(--orange);
+}
+
+.repo-stat-card#stars .repo-stat-head {
+  color: var(--light-orange);
+}
+
+.repo-stat-card .repo-stat {
+  color: var(--white);
 }
 
 @media screen and (min-width: 425px) {

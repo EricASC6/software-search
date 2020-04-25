@@ -34,8 +34,8 @@ body {
 }
 
 canvas {
-  max-height: 350px;
-  max-width: 350px;
+  max-height: 370px;
+  max-width: 370px;
   margin: auto;
 }
 

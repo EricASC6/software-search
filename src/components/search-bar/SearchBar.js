@@ -20,7 +20,12 @@ const SearchBar = ({
           toggleSearchTypes={toggleSearchTypes}
         />
         <div className="searchbar-input">
-          <input type="text" placeholder="Search" onChange={handleChange} />
+          <input
+            type="text"
+            placeholder="Search"
+            onChange={handleChange}
+            required
+          />
         </div>
       </div>
       <button className="search-btn" type="submit">

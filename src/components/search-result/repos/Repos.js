@@ -6,7 +6,7 @@ const Repos = ({ currentRepo, repos, moveToNextRepo, moveToPrevRepo }) => {
   return (
     <div className="repos">
       <div className="repos-header">
-        <h2>Top 6 Repos</h2>
+        <h2>Top {repos && repos.length} Repos</h2>
       </div>
       <ReposSlider
         currentRepo={currentRepo}

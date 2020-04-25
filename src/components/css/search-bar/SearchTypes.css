@@ -35,18 +35,16 @@
   transform: rotate(180deg);
 }
 
-.search-types .search-types-drop-down.active {
-  max-height: 500px;
-}
-
 .search-types .search-types-drop-down .search-types-list {
   position: absolute;
-  width: auto;
+  width: 100%;
   list-style: none;
-  max-height: 0;
+  max-height: 0px;
   transition: max-height 450ms ease-out;
   overflow: hidden;
   z-index: 100;
+  border-radius: 5px;
+  margin-top: 5px;
 }
 
 .search-types .search-types-drop-down .search-types-list.active {
@@ -57,8 +55,10 @@
   background-color: var(--light-gray);
   width: auto;
   padding: 0.75rem;
+  transition: 300ms filter;
 }
 
 .search-types .search-types-drop-down ul li:hover {
-  background-color: red;
+  filter: brightness(0.7);
+  cursor: pointer;
 }

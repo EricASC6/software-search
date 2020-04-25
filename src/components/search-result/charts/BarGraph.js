@@ -3,7 +3,7 @@ import Chart from "chart.js";
 
 let chart;
 
-class PieChart extends Component {
+class BarGraph extends Component {
   chartRef = React.createRef();
 
   componentDidMount() {
@@ -17,9 +17,11 @@ class PieChart extends Component {
   buildChart = () => {
     const { labels, data } = this.props;
     const dataset = {
+      labels: labels,
       datasets: [
         {
-          data: data,
+          label: "Repos vs. Stars",
+          data: data && [...data, 0],
           backgroundColor: [
             "#36A2EB",
             "#FF6384",
@@ -30,43 +32,36 @@ class PieChart extends Component {
           ],
         },
       ],
-      labels: labels,
     };
 
     const chartCanvas = this.chartRef.current.getContext("2d");
     if (chart) chart.destroy();
     chart = new Chart(chartCanvas, {
-      type: "pie",
+      type: "bar",
       data: dataset,
       options: {
         title: {
           display: true,
           fontSize: "18",
           fontColor: "#2d2d2d",
-          text: "Languages",
+          text: "Most Popular Repos",
         },
       },
     });
   };
 
   render() {
-    const data = this.props.data;
-    console.log(data);
-
     return (
-      <div className="pie-chart chart">
+      <div className="bar-graph chart">
         <canvas
           id="myChart"
           width="350"
           height="350"
           ref={this.chartRef}
         ></canvas>
-        {!data || data.length === 0 ? (
-          <div className="no-chart">No Data To Display</div>
-        ) : null}
       </div>
     );
   }
 }
 
-export default PieChart;
+export default BarGraph;

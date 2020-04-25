@@ -3,14 +3,14 @@ import { connect } from "react-redux";
 import ProfileCard from "./profile/ProfileCard";
 import Repos from "./repos/Repos";
 import Charts from "./charts/Charts";
-import { searchUser } from "./../../actions/githubActions";
-import "../css/search-result/searchResult.css";
+import { searchUser, searchOrg } from "./../../actions/githubActions";
+import "../css/search-result/SearchResult.css";
 
 class SearchResult extends Component {
   state = {
     currentRepo: 0,
-    numRepos: 6,
-    repos: [1, 2, 3, 4, 5, 6],
+    numRepos: 0,
+    found: false,
   };
 
   moveToNextRepo = () => {
@@ -24,16 +24,13 @@ class SearchResult extends Component {
   };
 
   moveToPrevRepo = () => {
-    this.setState(
-      {
-        ...this.state,
-        currentRepo:
-          this.state.currentRepo === 0
-            ? this.state.numRepos - 1
-            : this.state.currentRepo - 1,
-      },
-      () => console.log(this.state)
-    );
+    this.setState({
+      ...this.state,
+      currentRepo:
+        this.state.currentRepo === 0
+          ? this.state.numRepos - 1
+          : this.state.currentRepo - 1,
+    });
   };
 
   componentDidMount() {
@@ -44,14 +41,33 @@ class SearchResult extends Component {
       case "user":
         this.props.searchUser(value);
         break;
+      case "org":
+        console.log("searching for an org");
+        this.props.searchOrg(value);
+        break;
       default:
         return;
     }
   }
 
+  componentDidUpdate(prevProps) {
+    if (!prevProps.github.profile) {
+      console.log(this.props.github.err);
+      if (this.props.github.err) return this.props.history.push("/error");
+
+      this.setState({
+        github: this.props.github,
+        numRepos: this.props.github.numRepos,
+        found: true,
+      });
+    }
+  }
+
   render() {
+    if (!this.state.found) return <div className="loading">Loading</div>;
+
     const { moveToNextRepo, moveToPrevRepo } = this;
-    const { profile, repos } = this.props;
+    const { profile, repos } = this.props.github;
     const { numRepos, currentRepo } = this.state;
 
     return (
@@ -67,7 +83,7 @@ class SearchResult extends Component {
               moveToPrevRepo={moveToPrevRepo}
             />
           </div>
-          <Charts />
+          <Charts repos={repos} currentRepo={currentRepo} />
         </div>
       </div>
     );
@@ -75,15 +91,21 @@ class SearchResult extends Component {
 }
 
 const mapStateToProps = (state) => {
+  const { profile, repos, numRepos, err } = state.github;
   return {
-    profile: state.github.profile,
-    repos: state.github.repos,
+    github: {
+      profile,
+      repos,
+      numRepos,
+      err,
+    },
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     searchUser: (username) => dispatch(searchUser(username)),
+    searchOrg: (orgname) => dispatch(searchOrg(orgname)),
   };
 };
 
