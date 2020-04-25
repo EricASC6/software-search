@@ -17,6 +17,7 @@ const githubReducer = (state = initState, action) => {
         profile: action.profile,
         repos: action.repos,
         numRepos: action.repos.length,
+        err: null,
       };
 
     case "ORG_SEARCH":
@@ -29,6 +30,7 @@ const githubReducer = (state = initState, action) => {
         profile: action.profile,
         repos: action.repos,
         numRepos: action.repos.length,
+        err: null,
       };
     case "SEARCH_ERROR":
       return {

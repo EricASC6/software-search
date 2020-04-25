@@ -14,6 +14,7 @@ export const searchUser = (username) => {
     try {
       const userData = await githubAPI.getUserData(username);
       const repos = await githubAPI.getRepos(username);
+      console.log(repos);
       const sortedRepos = githubAPI.sortReposByStars(repos, 3);
       const profileData = GithubDataFilter.filterUserData(userData);
       let reposData = await GithubDataFilter.filterReposData(sortedRepos);

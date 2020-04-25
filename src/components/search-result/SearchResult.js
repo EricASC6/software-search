@@ -10,6 +10,7 @@ class SearchResult extends Component {
   state = {
     currentRepo: 0,
     numRepos: 0,
+    found: false,
   };
 
   moveToNextRepo = () => {
@@ -51,16 +52,20 @@ class SearchResult extends Component {
 
   componentDidUpdate(prevProps) {
     if (!prevProps.github.profile) {
+      console.log(this.props.github.err);
       if (this.props.github.err) return this.props.history.push("/error");
 
       this.setState({
         github: this.props.github,
         numRepos: this.props.github.numRepos,
+        found: true,
       });
     }
   }
 
   render() {
+    if (!this.state.found) return <div>Loading</div>;
+
     const { moveToNextRepo, moveToPrevRepo } = this;
     const { profile, repos } = this.props.github;
     const { numRepos, currentRepo } = this.state;
