@@ -33,6 +33,8 @@ const githubReducer = (state = initState, action) => {
         err: null,
       };
     case "SEARCH_ERROR":
+      console.log("Search Error");
+
       return {
         ...state,
         err: action.err,

@@ -64,7 +64,7 @@ class SearchResult extends Component {
   }
 
   render() {
-    if (!this.state.found) return <div>Loading</div>;
+    if (!this.state.found) return <div className="loading">Loading</div>;
 
     const { moveToNextRepo, moveToPrevRepo } = this;
     const { profile, repos } = this.props.github;
