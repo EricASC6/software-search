@@ -50,13 +50,8 @@ class SearchResult extends Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
-    const url = this.props.match.url;
-    const [, , value] = url.split("/");
-    if (
-      !prevProps.github.profile ||
-      prevProps.github.profile.username !== value
-    ) {
+  componentDidUpdate() {
+    if (!this.state.found) {
       if (this.props.github.err) return this.props.history.push("/error");
 
       this.setState({
